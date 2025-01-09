@@ -6,9 +6,9 @@ services:
     container_name: redis-stack-prod
     command: redis-stack-server --requirepass ${REDIS_PASSWORD}
     environment:
-      - REDIS_ARGS="--appendonly yes --appendfsync everysec"
-      - REDISEARCH_ARGS="MAXTHREADS 16"
-      - REDISJSON_ARGS="MAXMEMORY 48gb"
+      - REDIS_ARGS=--appendonly yes --appendfsync everysec
+      - REDISEARCH_ARGS=THREADS 16
+      - REDISJSON_ARGS=MAXMEMORY 48gb
     volumes:
       - redis_data:/data
       - ./redis.conf:/redis-stack.conf
