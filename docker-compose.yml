@@ -7,8 +7,8 @@ services:
     command: redis-stack-server --requirepass ${REDIS_PASSWORD}
     environment:
       - REDIS_ARGS="--appendonly yes --appendfsync everysec"
-      - REDISEARCH_ARGS="MAXTHREADS 8"
-      - REDISJSON_ARGS="MAXMEMORY 2gb"
+      - REDISEARCH_ARGS="MAXTHREADS 16"
+      - REDISJSON_ARGS="MAXMEMORY 48gb"
     volumes:
       - redis_data:/data
       - ./redis.conf:/redis-stack.conf
@@ -19,9 +19,6 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    sysctls:
-      net.core.somaxconn: 65535
-      vm.overcommit_memory: 1
     deploy:
       resources:
         limits:
